@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan 1</title>
+        <style>
+            body {     
+        background: linear-gradient(to right, #b7eba4, #78c48a);
+        text-align: center;
+            }
+
+            .header {
+                font-weight: 700;
+                font-size: 30px;
+                margin-bottom: 15px;
+            }
+
+            .deskripsi-header {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+
+            .form-input {
+                width: 60%;
+                background-color: white;
+                margin: auto;
+                padding: 15px;
+                border-radius: 10px;
+                text-align: left;
+                display: flex;
+                flex-direction: column;
+                font-family: Arial;
+            }
+
+            textarea {
+            height: 100px;
+            }
+
+            input, select, textarea, button {
+                margin-top: 5px;
+                margin-bottom: 25px;
+                padding: 5px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+            .kirim-btn {
+                color: aliceblue;
+                background-color: #28a745;
+                cursor: pointer;
+                transition: 0.15s;
+            }
+
+            .kirim-btn:hover {
+                background-color:#44b41b;
+                transition: 0.15s;
+            }
+
+            .error-message {
+                color: red;
+                font-size: 14px;
+                display: none;
+            }
+
+            .navbar {
+                margin-top: 30px;
+                display: flex;
+                justify-content: space-around;
+                background-color: #28a745;
+                padding: 15px;
+            }
+
+            .navbar a {
+                font-family: Arial;
+                font-weight: bold;
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 10px;
+            }
+            .navbar a:hover {
+                background-color: #218838;
+                border-radius: 5px;
+            }
+
+        </style>
+</head>    
+<body>    
+    <form onsubmit="return ubahTombol(event)">
+        <div class="form-input">
+            <p class="header">FORMULIR INPUT PRODUK</p> 
+            <p class="deskripsi-header">Silakan isi formulir di bawah ini untuk menambahkan produk baru ke dalam sistem.</p>  
+                    
+            <label for="nama">Nama Produk :</label>
+            <input type="text" id="nama" required>
+
+            <label for="deskripsi">Deskripsi Produk :</label>
+            <textarea id="deskripsi" required></textarea>
+
+            <label for="harga">Harga Produk :</label>
+            <input id="harga" type="number" required>
+
+            <label for="kategori">Kategori Produk :</label>
+            <select id="kategori" required>
+                <option value="">Pilih Kategori</option>
+                <option value="elektronik">Elektronik</option>
+                <option value="minuman">Minuman</option>
+                <option value="pakaian">Pakaian</option>
+                <option value="makanan">Makanan</option>
+            </select>
+
+            <label for="file-gambar">Unggah Gambar Produk :</label>
+            <input id="file-gambar" type="file">
+
+            <p class="error-message" id="error-msg">Harap isi semua kolom!</p>
+
+            <button class="kirim-btn" id="kirim-btn" type="submit">Kirim</button>
+        </div>
+    </form>
+
+    <div class="navbar">
+        <a href="#">Nama Produk</a>
+        <a href="#">Deskripsi Produk</a>
+        <a href="#">Harga Produk</a>
+        <a href="#">Kategori Produk</a>
+    </div>
+
+    <script>
+        function ubahTombol(event) {
+           
+            var nama = document.getElementById("nama").value.trim();
+            var deskripsi = document.getElementById("deskripsi").value.trim();
+            var harga = document.getElementById("harga").value.trim();
+            var kategori = document.getElementById("kategori").value.trim();
+            var fileGambar = document.getElementById("file-gambar").value.trim();
+            var button = document.getElementById("kirim-btn");
+            var errorMsg = document.getElementById("error-msg");
+
+          
+            if (nama === "" || deskripsi === "" || harga === "" || kategori === "" ) {
+                errorMsg.style.display = "block";  
+                return false; 
+            }
+
+            errorMsg.style.display = "none";  // Sembunyikan pesan error jika sudah diisi semua
+
+          
+
+            // Ubah ke checkmark dan warna hijau sukses
+            button.innerHTML = "&#10003;";
+            button.style.backgroundColor = "#218838";
+
+            setTimeout(function() {
+                // Kembalikan teks dan warna awal
+                button.innerHTML = "Kirim";
+                button.style.backgroundColor = "#28a745";
+                
+            }, 3000);
+
+            return false; // Mencegah form benar-benar dikirim
+        }
+    </script>
+</body>
+</html>
